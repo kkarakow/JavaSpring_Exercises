@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table th:if="${session.phoneList != null AND session.phoneList !=''}">
+		
+			<tr th:each="s:${session.phoneList}">
+				<td th:text="${s.model}">Frank</td>
+				<td th:text="${s.price}">1200</td>
+			</tr>	
+	</table>
+	
+		<form method="POST" th:action="@{/insertPhone}"th:object="${phone}">
+	
+		<input type="hidden" name="id" th:field="*{id}"/>
+		Model: <input type="text" name="model" th:field="*{model}"/><br>
+		Price: <input type="number" name="price" th:field="*{price}"/><br>
+		<input type="submit" value="Go!"/>
+	
+	</form>
+</body>
+</html>
