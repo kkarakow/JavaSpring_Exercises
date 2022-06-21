@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>This is index.html</h1>
+
+
+	<form method="post" action="#" th:action="@{/insertStudent}"
+		th:object="${student}">
+		<input type="hidden" name="id" th:field="*{id}" /> 
+		Name: <input
+			type="text" name="name" th:field="*{name}" /> <br> 
+			
+		House Number: <input type="number" name="houseNumber"
+			th:field="*{houseNumber}" /> <br> 
+			
+		Street Name: <input
+			type="text" name="streetName" th:field="*{streetName}" /> <br>
+			
+		City: <input type="text" name="city" th:field="*{city}" /> <br>
+
+		Province: <select th:field="*{province}">
+			<option th:each="p:${provinceList}" th:value="${p.province}"
+				th:text="${p.province}" /></option>
+		</select><br> <input type="submit" value="Go!" />
+
+		<table>
+			<tr th:each="s : ${studentList}">
+				<td th:text="${s.name}">Frank</td>
+				<td th:text="${s.houseNumber}">15</td>
+				<td th:text="${s.streetName}">Main st</td>
+				<td th:text="${s.city}">Mississauga</td>
+				<td th:text="${s.province}">Onterio</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

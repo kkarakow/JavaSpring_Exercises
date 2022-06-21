@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<link th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+<meta charset="UTF-8">
+<title>Game List</title>
+</head>
+<body>
+<div class="table-wrapper">
+	<table class="fl-table">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Publisher</th>
+			<th>Platform</th>
+			<th>Price</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="aGame:${gameList}">
+			<td th:text="${aGame.id}">1</td>
+			<td th:text="${aGame.title}">The Witcher</td>
+			<td th:text="${aGame.publisher}">CD Project</td>
+			<td th:text="${aGame.platform}">PS5</td>
+			<td th:text="${aGame.price}">$79.99</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="table-wrapper">	
+	<form method="post" action="#" th:action="@{/addGame}" th:object="${game}">
+	
+		<table class="fl-table">
+		<thead>
+		<tr>
+			<th colspan="2">Add New Game</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+		<td>ID:</td> 
+		<td><input type="number" th:field="*{id}"/></td>
+		</tr>
+		<tr>
+		<td>Title:</td> 
+		<td><input type="text" th:field="*{title}"/></td>
+		</tr>
+		<tr>
+		<td>Publisher:</td> 
+		<td><input type="text" th:field="*{publisher}"/></td>
+		</tr>
+		<tr>
+		<td>Platform:</td>
+		<td><select th:field="*{platform}">
+			<option th:each="p:*{platforms}" th:value="${p}" th:text="${p}"/>
+		</select></td>
+		</tr>
+		<tr>
+		<td>Price:</td> 
+		<td><input type="number" step="0.01" th:field="*{price}"/></td>
+		</tr>
+		<tr>
+		<td colspan="2"><input type="submit" value="Add Game!"/></td>
+		</tr>
+		</tbody>
+	</table>
+	</form>
+	</div>
+</body>
+</html>
